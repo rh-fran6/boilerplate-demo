@@ -1,0 +1,11 @@
+01-infraApps/devops/*
+01-infraApps/networking/*
+01-infraApps/infra/*
+01-infraApps/operators/*
+01-infraApps/security/*
+01-infraApps/infra/*
+02-tenantApps/04-rbac/*
+charts/*
+templates/*
+Chart.yaml
+values.yaml

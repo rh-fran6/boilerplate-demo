@@ -1,0 +1,173 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: maintenance-page
+data:
+  maintenance.html: |-
+    <!doctype html>
+    <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+    <head prefix="og: http://ogp.me/ns#">
+            
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta charset="utf-8"/>
+    <title>Service Unavailable - Innovation, Science and Economic Development Canada</title>
+    <meta content="width=device-width,initial-scale=1" name="viewport"/>
+
+
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
+      <link rel="canonical" href="https://www.canada.ca/errors/503.html"/>
+        <link rel="alternate" hreflang="en" href="https://www.canada.ca/errors/503.html"/>
+      
+      
+      
+      
+        <meta name="author" content="Innovation, Science and Economic Development Canada"/>
+      
+      
+        <meta name="dcterms.title" content="Service Unavailable"/>
+      
+      
+      
+        <meta name="dcterms.creator" content="Innovation, Science and Economic Development Canada"/>
+      
+      
+      
+        <meta name="dcterms.language" title="ISO639-2/T" content="eng"/>
+      
+      
+      
+        <meta name="dcterms.issued" title="W3CDTF" content="2015-10-23"/>
+      
+      
+        <meta name="dcterms.modified" title="W3CDTF" content="2020-06-11"/>
+      
+      
+      
+        <meta name="dcterms.spatial" content="Canada"/>
+      
+      
+      
+      
+      
+      
+        <meta name="dcterms.identifier" content="Innovation_Science_and_Economic_Development_Canada"/>
+      
+          
+
+
+      <script src="//assets.adobedtm.com/be5dfd287373/abb618326704/launch-3eac5e076135.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://www.canada.ca/etc/designs/canada/wet-boew/css/theme.min.css"/>
+    <link href="https://www.canada.ca/etc/designs/canada/wet-boew/assets/favicon.ico" rel="icon" type="image/x-icon"/>
+    <noscript><link rel="stylesheet" href="https://www.canada.ca/etc/designs/canada/wet-boew/css/noscript.min.css"/></noscript>
+
+
+
+        <body>
+            <header>
+        <div id="wb-bnr" class="container">
+            <div class="row">
+                <div class="brand col-xs-8 col-sm-9 col-md-6">
+                  <img src="https://www.canada.ca/etc/designs/canada/wet-boew/assets/sig-blk-en.svg" alt="Government of Canada / Gouvernement du Canada"/>
+                </div>
+            </div>
+        </div>
+    </header>
+
+            <main property="mainContentOfPage" resource="#wb-main" class="container">
+                <h1 id="wb-cont" class="wb-inv">Online Filing Centre is down</h1>
+                <div class="row mrgn-tp-lg mrgn-bttm-lg">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <section>
+                                <div class="col-md-6">
+                                    
+                                    <div class="mwstext section"><div class="row"> 
+    <div class="col-xs-3 col-sm-2 col-md-2 text-center mrgn-tp-md"> 
+      <span class="glyphicon glyphicon-warning-sign glyphicon-error"></span> 
+    </div> 
+    <div class="col-xs-9 col-sm-10 col-md-10"> 
+      <h2 class="mrgn-tp-md">Online Filing Centre is down</h2>  
+    </div> 
+    </div> 
+    <p>The Online Filing Centre is not available during the weekend of January 20 due to a system update.
+    You are not able to file any transactions at this time. The Online Filing Centre will be back up on the
+    morning of Monday, January 22, 2024, once the update is completed. Thank you for your patience and understanding.</p> 
+    <ul> 
+    <li>Return to the <a href="https://ised-isde.canada.ca/site/corporations-canada/en">Corporations Canada website</a>.</li> 
+    </ul> 
+    </div>
+
+
+                                </div>
+                            </section>
+                            <section lang="fr">
+                                <div class="col-md-6">
+                                  
+                                    <div class="mwstext section"><div class="row"> 
+    <div class="col-xs-3 col-sm-2 col-md-2 text-center mrgn-tp-md"> 
+      <span class="glyphicon glyphicon-warning-sign glyphicon-error"></span> 
+    </div> 
+    <div class="col-xs-9 col-sm-10 col-md-10"> 
+      <h2 class="mrgn-tp-md">Le Centre de dépôt en ligne est inaccessible</h2> 
+    </div> 
+    </div> 
+    <div class="row mrgn-bttm-lg"> 
+    <div class="col-md-12"> 
+      <p>Le Centre de dépôt en ligne n’est pas accessible durant la fin de semaine du 20 janvier en raison 
+      d’une mise à jour du système. Vous ne pouvez déposer aucune transaction durant cette période. Le 
+      Centre de dépôt en ligne sera de nouveau accessible le matin du lundi 22 janvier 2024, une fois la 
+      mise à jour effectuée. Merci de votre patience et de votre compréhension.</p> 
+      <ul> 
+      <li>Retourner sur le site <a href="https://ised-isde.canada.ca/site/corporations-canada/fr">Web de Corporations Canada</a>.</li> 
+      </ul> 
+    </div> 
+    </div></div>
+
+
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </main>
+            <footer role="contentinfo" id="wb-info">
+
+        <div class="brand">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-6 visible-sm visible-xs tofpg">
+                        <a href="#wb-cont">Top of page / <span lang="fr">Haut de la page</span> <span class="glyphicon glyphicon-chevron-up"></span></a>
+                    </div>
+                    <div class="col-xs-6 col-md-12 text-right">
+                        <img src="https://www.canada.ca/etc/designs/canada/wet-boew/assets/wmms-blk.svg" alt="Symbol of the Government of Canada / Symbole du gouvernement du Canada"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+        <script type="text/javascript">_satellite.pageBottom();</script>
+
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script src="https://www.canada.ca/etc/designs/canada/wet-boew/js/ep-pp.min.js"></script>
+    <script src="https://www.canada.ca/etc/designs/canada/wet-boew/js/wet-boew.min.js"></script>
+    <script src="https://www.canada.ca/etc/designs/canada/wet-boew/js/theme.min.js"></script>
+
+
+
+        </body>
+    </html>
+

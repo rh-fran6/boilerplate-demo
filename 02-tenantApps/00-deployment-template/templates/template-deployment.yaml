@@ -1,0 +1,140 @@
+{{- range $key, $value := .Values.applications }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  {{- if $value.labels }}
+  labels:
+    {{- range $k1, $v1 := $value.labels }}
+    {{ $k1 }}: {{ $v1 }}
+    {{- end }}
+  {{- end }}
+  {{- if $value.annotations }}
+  annotations:
+    {{- range $k1, $v1 := $value.annotations }}
+    {{ $k1 }}: {{ $v1 }}
+    {{- end }}
+  {{- end }}
+  name: {{ $value.name }}
+spec:
+  replicas: {{ $value.replicas }}
+  strategy:
+    activeDeadline: {{ $value.strategy.activeDeadline | default "21600" }}
+    rollingParams:
+      intervalSeconds: {{ $value.strategy.interval | default "1" }}
+      maxSurge: {{ $value.strategy.interval | default "25%" }}
+      maxUnavailable: {{ $value.strategy.interval | default "25%" }}
+      timeoutSeconds: {{ $value.strategy.interval | default "120" }}
+      updatePeriodSeconds: {{ $value.strategy.interval | default "1" }}
+    type: {{ $value.strategy.type | default "Rolling" }}
+  {{- if $value.specSelectorLabels.enabled }}
+  selector:
+    matchLabels:
+      {{- range $k2, $v2 := $value.specSelectorLabels }}
+      {{- if ne $k2 "enabled" }}
+      {{ $k2 }}: {{ $v2 }}
+      {{- end }}
+      {{- end }}
+  {{- end }}
+  template:
+    {{- if $value.specTemplateLabels.enabled }}
+    metadata:
+      labels:
+        {{- range $k3, $v3 := $value.specTemplateLabels }}
+        {{- if ne $k3 "enabled" }}
+        {{ $k3 }}: {{ $v3 }}
+        {{- end }}
+        {{- end }}
+    {{- end }}
+    spec:
+      {{- if $value.volumes.enabled }}
+      volumes:
+        {{- range $kkey, $kval := $value.volumes.data }}
+        {{- if eq $kval.type "configmap" }}
+        - name: {{ $kval.name }}
+          configMap:
+            name: {{ $kval.typeName }}
+        {{- else if eq $kval.type "secret" }}
+        - name: {{ $kval.name }}
+          secret:
+            secretName: {{ $kval.typeName }}
+        {{- end }}
+        {{- end }}
+      {{- end }}  
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: {}
+  terminationGracePeriodSeconds: 30 
+  containers:
+    {{- range $k4, $v4 := $value.containers }}
+    - image: {{ $v4.image }}
+      imagePullPolicy: {{ $v4.imagePullPolicy }}
+      name: {{ $v4.name}}
+      ports:
+        {{- range $thisKey, $thisVal := $v4.ports }}
+        - containerPort: {{ $thisVal.containerPort }}
+          protocol: {{ $thisVal.protocol }}
+        {{- end }}
+      resources:
+        requests:
+          memory: {{ $v4.memoryRequest | default "64Mi" }}
+          cpu: {{ $v4.cpuRequest | default "250" }}
+        limits:
+          memory: {{ $v4.memoryLimit | default "128" }}
+          cpu: {{ $v4.memoryLimit | default "500m" }}    
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File  
+      {{- if $v4.env }}
+      env:
+        {{- range $envKey, $envValue := $v4.env }}
+        - name: {{ $envValue.name }}
+          {{- if $envValue.value }}
+          value: {{ $envValue.value }}
+          {{- else if $envValue.valueFrom.secretKeyRef }}
+          valueFrom:
+            secretKeyRef:
+              key: {{ $envValue.valueFrom.secretKeyRef.key }}
+              name: {{ $envValue.valueFrom.secretKeyRef.name }}
+          {{- else if $envValue.valueFrom.configMapKeyRef }}
+          valueFrom:
+            configMapKeyRef:
+              key: {{ $envValue.valueFrom.configMapKeyRef.key }}
+              name: {{ $envValue.valueFrom.configMapKeyRef.name }}
+          {{- end }}
+        {{- end }}
+      {{- end }}
+      {{- if $v4.livenessProbe.enabled }}
+      livenessProbe:
+        failureThreshold: {{ $v4.livenessProbe.failureThreshold }}
+        httpGet:
+          path: {{ $v4.livenessProbe.httpGetPath }}
+          port: {{ $v4.livenessProbe.httpGetPort }}
+          scheme: {{ $v4.livenessProbe.httpGetScheme }}
+        initialDelaySeconds: {{ $v4.livenessProbe.initialDelay }}
+        periodSeconds: {{ $v4.livenessProbe.period }}
+        successThreshold: {{ $v4.livenessProbe.successThreshold }}
+        timeoutSeconds: {{ $v4.livenessProbe.timeoutSeconds }}
+      {{- end }}
+      {{- if $v4.readinessProbe.enabled }}
+      readinessProbe:
+        failureThreshold: {{ $v4.readinessProbe.failureThreshold }}
+        httpGet:
+          path: {{ $v4.readinessProbe.httpGetPath }}
+          port: {{ $v4.readinessProbe.httpGetPort }}
+          scheme: {{ $v4.readinessProbe.httpGetScheme }}
+        initialDelaySeconds: {{ $v4.readinessProbe.initialDelay }}
+        periodSeconds: {{ $v4.readinessProbe.period }}
+        successThreshold: {{ $v4.readinessProbe.successThreshold }}
+        timeoutSeconds: {{ $v4.readinessProbe.timeoutSeconds }}
+      {{- end }}
+    {{- end }}
+    {{- if $value.volumes.enabled }}
+  volumesMounts:
+    {{- range $kvol, $vvol := $value.volumes.data }}
+    - name: {{ $vvol.name }}
+      mountPath: {{ $vvol.volMountPath }}
+      subPath: {{ $vvol.volMountSubpath }}
+    {{- end }}
+    {{- end }}
+---
+{{- end }}

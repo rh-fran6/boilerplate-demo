@@ -1,0 +1,104 @@
+
+global:
+  openshiftGitopsNamespace: openshift-gitops
+
+applications:
+  ##  Applications in platform-admin namespace
+  - appName: image-registries
+    repoUrl: https://scm.ised-isde.canada.ca/scm/is/ised-openshift-admin-gitops.git
+    branch: main
+    argocdNamespace: openshift-gitops
+    applicationProject: cluster-config
+    applicationNamespace: openshift-gitops
+    appPath: cluster-config/rosa-non-prod/image-registries
+  - appName: rbac
+    repoUrl: https://scm.ised-isde.canada.ca/scm/is/ised-openshift-admin-gitops.git
+    branch: main
+    argocdNamespace: openshift-gitops
+    applicationProject: cluster-config
+    applicationNamespace: openshift-gitops
+    appPath: cluster-config/rosa-non-prod/rbac
+  - appName: security-context-constraints
+    repoUrl: https://scm.ised-isde.canada.ca/scm/is/ised-openshift-admin-gitops.git
+    branch: main
+    argocdNamespace: openshift-gitops
+    applicationProject: cluster-config
+    applicationNamespace: openshift-gitops
+    appPath: cluster-config/rosa-non-prod/security-context-constraints
+  - appName: tenant
+    repoUrl: https://scm.ised-isde.canada.ca/scm/git/ised-openshift-tenants-gitops.git
+    branch: rosa-non-prod
+    argocdNamespace: openshift-gitops
+    applicationProject: cluster-services
+    applicationNamespace: openshift-gitops
+    appPath: rosa-non-prod
+  - appName: external-secrets
+    repoUrl: https://scm.ised-isde.canada.ca/scm/is/gitops-external-secrets.git
+    branch: main
+    argocdNamespace: openshift-gitops
+    applicationProject: cluster-services
+    applicationNamespace: external-secrets
+    appPath: rosa-non-prod
+  - appName: ised-certificates
+    repoUrl: https://scm.ised-isde.canada.ca/scm/is/gitops-ised-certificates.git
+    branch: main
+    argocdNamespace: openshift-gitops
+    applicationProject: cluster-services
+    applicationNamespace: ised-certificates
+    appPath: rosa-non-prod
+  - appName: ised-cicd-tools-test
+    repoUrl: https://scm.ised-isde.canada.ca/scm/is/gitops-ised-cicd-tools.git
+    branch: main
+    argocdNamespace: openshift-gitops
+    applicationProject: cluster-services
+    applicationNamespace: ised-cicd-tools-test
+    appPath: rosa-non-prod/ised-cicd-tools-test
+  - appName: ised-cicd-tools
+    repoUrl: https://scm.ised-isde.canada.ca/scm/is/gitops-ised-cicd-tools.git
+    branch: main
+    argocdNamespace: openshift-gitops
+    applicationProject: cluster-services
+    applicationNamespace: ised-cicd-tools
+    appPath: rosa-non-prod/ised-cicd-tools
+  - appName: ised-db-tools-test
+    repoUrl: https://scm.ised-isde.canada.ca/scm/is/gitops-ised-db-tools.git
+    branch: main
+    argocdNamespace: openshift-gitops
+    applicationProject: cluster-services
+    applicationNamespace: ised-db-tools-test
+    appPath: rosa-non-prod/ised-db-tools-test
+  - appName: ised-db-tools
+    repoUrl: https://scm.ised-isde.canada.ca/scm/is/gitops-ised-db-tools.git
+    branch: main
+    argocdNamespace: openshift-gitops
+    applicationProject: cluster-services
+    applicationNamespace: ised-db-tools
+    appPath: rosa-non-prod/ised-db-tools
+  - appName: openshift-gitops
+    repoUrl: https://scm.ised-isde.canada.ca/scm/is/gitops-openshift-gitops.git
+    branch: main
+    argocdNamespace: openshift-gitops
+    applicationProject: cluster-services
+    applicationNamespace: openshift-gitops
+    appPath: rosa-non-prod
+  - appName: workload-monitoring
+    repoUrl: https://scm.ised-isde.canada.ca/scm/is/gitops-workload-monitoring.git
+    branch: main
+    argocdNamespace: openshift-gitops
+    applicationProject: cluster-services
+    applicationNamespace: workload-monitoring
+    appPath: rosa-non-prod
+
+
+argocdInstances:
+  - name: opeshift-gitops
+    projects:
+    - name: cluster-bootstrap
+      sourceRepos: 
+      - "'*'"
+    - name: cluster-config
+      sourceRepos: 
+      -  "'*'"
+    - name: cluster-services
+      sourceRepos: 
+      - "'*'" 
