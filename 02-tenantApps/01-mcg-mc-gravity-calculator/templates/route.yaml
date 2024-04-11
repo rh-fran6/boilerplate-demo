@@ -11,7 +11,7 @@ metadata:
   name: {{ .Values.global.applicationName }}
   namespace: {{ .Values.global.routeNamespace }}
 spec:
-  host: {{ .Values.global.applicationName }}-{{ .Values.global.appNamespace }}-{{ .Values.global.applicationName }}.{{ .Values.global.clusterDomain }}
+  host: {{ .Values.global.applicationName }}-{{ .Values.global.appNamespace }}.{{ .Values.global.clusterDomain }}
   port:
     targetPort: 8080-tcp
   tls:
