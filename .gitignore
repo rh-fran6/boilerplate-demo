@@ -4,6 +4,7 @@
 01-infraApps/operators/*
 01-infraApps/security/*
 01-infraApps/infra/*
+02-tenantApps/01-ised-nginx-nonprod/templates/route.yaml
 02-tenantApps/04-rbac/*
 charts/*
 templates/*
