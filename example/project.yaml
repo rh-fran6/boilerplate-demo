@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: tenant
+  namespace: opeshift-gitops  
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+spec:
+  description: tenant GitOps Project
+  destinations:
+  - namespace: '*'
+    server: '*'
+  clusterResourceWhitelist:
+  - group: '*'
+    kind: '*'
+  namespaceResourceBlacklist:
+  - group: tekton.dev
+    kind: TaskRun
+  - group: tekton.dev
+    kind: PipelineRun
+  namespaceResourceWhitelist:
+  - group: '*'
+    kind: '*'
+  sourceRepos: 
+  - '*'
+status: {}
+---

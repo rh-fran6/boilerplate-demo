@@ -1,0 +1,29 @@
+# Source: 02-mcg-mc-gravity-calculator/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: mcg-mc-gravity-calculator
+  annotations:
+  labels:
+    app: mcg-mc-gravity-calculator
+    app.kubernetes.io/component: mcg-mc-gravity-calculator
+    app.kubernetes.io/instance: mcg-mc-gravity-calculator
+    app.kubernetes.io/part-of: mcg-mc-gravity-calculator-app
+spec:
+  ports:
+  - name: 8080-tcp
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  - name: 8443-tcp
+    port: 8443
+    protocol: TCP
+    targetPort: 8443
+  - name: 8778-tcp
+    port: 8778
+    protocol: TCP
+    targetPort: 8778
+  selector:
+    app: mcg-mc-gravity-calculator
+  sessionAffinity: None
+  type: ClusterIP

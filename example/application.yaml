@@ -1,0 +1,36 @@
+
+# Source: applications/templates/applicationtemplate.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  annotations: 
+  name: mcg-mc-gravity-calculator-application
+  namespace: openshift-gitops
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: sbms-mc-mcg-rosa  
+  project: tenant
+  sources:
+    - repoURL: https://scm.ised-isde.canada.ca/scm/is/boilerplate-demo.git
+      targetRevision: rosa
+      path: 02-tenantApps/01-mcg-mc-gravity-calculator
+  syncPolicy:
+    automated: {}
+    retry:
+      limit: 20
+    managedNamespaceMetadata:
+      labels:
+        openshift.io/cluster-monitoring: "true"
+        argocd.argoproj.io/managed-by: openshift-gitops
+      annotations:    
+    syncOptions:
+      - CreateNamespace=true
+      - ApplyOutOfSyncOnly=true
+    retry:
+      limit: 5 
+      backoff:
+        duration: 5s
+        factor: 2 
